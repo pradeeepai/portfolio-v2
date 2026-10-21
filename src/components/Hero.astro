@@ -1,0 +1,154 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="hero wrap" id="top" aria-labelledby="hero-name">
+  <p class="label">{profile.role} · AWS</p>
+  <h1 class="name" id="hero-name">{profile.name}</h1>
+  <div class="grid">
+    <div class="intro">
+      <div class="lead">
+        {profile.lead.map((line) => <p>{line}</p>)}
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="#work">Read the case study</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+    <dl class="plate">
+      {
+        profile.plate.map((row) => (
+          <div class="row">
+            <dt class="label">{row.label}</dt>
+            <dd>{row.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    gap: 1.25rem;
+    padding-block: clamp(3rem, 8vw, 6rem) clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-stretch: 125%;
+    font-weight: 800;
+    font-size: var(--step-hero);
+    line-height: 0.88;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+    margin-left: -0.04em;
+    overflow-wrap: anywhere;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+    gap: 2rem 4rem;
+    align-items: start;
+    margin-top: 1rem;
+  }
+
+  .intro {
+    display: grid;
+    gap: 2rem;
+    min-width: 0;
+  }
+
+  .lead {
+    display: grid;
+    gap: 0.5rem;
+    max-width: 38ch;
+    font-size: var(--step-1);
+    line-height: 1.5;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding: 0 1.125rem;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  .btn:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .btn.primary:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+  }
+
+  .plate {
+    margin: 0;
+    border: 1.5px solid var(--ink);
+    background: var(--surface);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    align-items: baseline;
+  }
+
+  .row + .row {
+    border-top: 1px solid var(--rule);
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 420px) {
+    .row {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.125rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+    }
+  }
+</style>

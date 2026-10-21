@@ -1,0 +1,65 @@
+---
+import { certifications } from '../data/profile';
+---
+
+<section class="section wrap" id="certifications" aria-labelledby="certs-title">
+  <p class="section-tag label">Certifications</p>
+  <div class="section-body">
+    <h2 class="section-title" id="certs-title">AWS certifications</h2>
+    <ul class="certs">
+      {
+        certifications.map((cert) => (
+          <li>
+            <div>
+              <h3>{cert.name}</h3>
+              <p class="label">Amazon Web Services</p>
+            </div>
+            {cert.verifyUrl && (
+              <a href={cert.verifyUrl} target="_blank" rel="noopener noreferrer">
+                Verify on Credly<span aria-hidden="true"> ↗</span>
+              </a>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .certs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 1px solid var(--rule);
+    max-width: 52rem;
+  }
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem 2rem;
+    padding-block: 1.125rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  li > div {
+    display: grid;
+    gap: 0.125rem;
+    min-width: 0;
+  }
+
+  h3 {
+    font-size: var(--step-0);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  a {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+</style>

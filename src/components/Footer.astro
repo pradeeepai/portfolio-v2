@@ -1,0 +1,35 @@
+---
+import { profile } from '../data/profile';
+
+// GITHUB_SHA is set by GitHub Actions. Local builds show "local".
+const build = (process.env.GITHUB_SHA ?? 'local').slice(0, 7);
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap inner">
+    <p>© {year} {profile.name}</p>
+    <p class="label">Astro · GitHub Actions · GitHub Pages · build {build}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--rule);
+  }
+
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 2rem;
+    padding-block: 2rem;
+    font-size: 0.9375rem;
+    color: var(--muted);
+  }
+
+  .label {
+    text-transform: none;
+    letter-spacing: 0;
+  }
+</style>

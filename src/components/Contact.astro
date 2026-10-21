@@ -1,0 +1,60 @@
+---
+import { contact } from '../data/profile';
+
+const links = [
+  { label: 'Email', value: contact.email, href: `mailto:${contact.email}`, text: contact.email },
+  { label: 'Upwork', value: contact.upwork, href: contact.upwork, text: 'Upwork profile' },
+  { label: 'LinkedIn', value: contact.linkedin, href: contact.linkedin, text: 'LinkedIn profile' },
+  { label: 'GitHub', value: contact.github, href: contact.github, text: contact.github.replace(/^https?:\/\//, '') },
+].filter((link) => link.value);
+---
+
+<section class="section wrap" id="contact" aria-labelledby="contact-title">
+  <p class="section-tag label">Contact</p>
+  <div class="section-body">
+    <h2 class="section-title" id="contact-title">Start a project</h2>
+    <p class="prose">
+      Send a short description of your current setup and the result you need. Include the AWS services
+      you use and your approximate monthly AWS cost.
+    </p>
+    <dl class="links">
+      {
+        links.map((link) => (
+          <div>
+            <dt class="label">{link.label}</dt>
+            <dd>
+              <a
+                href={link.href}
+                {...(link.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                {link.text}
+              </a>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .links {
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .links div {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  dd {
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: var(--step-1);
+  }
+</style>
